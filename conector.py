@@ -4,7 +4,7 @@ import MySQLdb
 class connection:
     
     try:
-        conn = MySQLdb.connect("http://192.168.1.191/phpmyadmin/","root","tsystems","sacarinosDB")
+        conn = MySQLdb.connect("locahost","root","","sacarinosDB")
 
     except MySQLdb.Error as e:
         print("No se puede conectar a la base de datos")
