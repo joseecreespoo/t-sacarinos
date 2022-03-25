@@ -1,0 +1,61 @@
+*{
+    background-color: magenta;
+    color: white;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+  }
+  h1 {
+      background-color: darkmagenta;
+      font-size: 100;
+      font-family: "Homer Simpson UI";
+  }
+  h3 {
+      font-size: 60;
+      font-family: "Homer Simpson UI";
+  }
+  header{
+    font-family: "Homer Simpson UI";
+    width: 400px;
+    margin: 50 auto;
+  }
+  ul{
+    list-style: none;
+  }
+  #menu li>a{
+    background-color: magenta;
+    color: white;
+    padding: 20px;
+    display: block;
+    text-decoration: none;
+    min-width: 100px;
+  }
+  #menu li>a:hover{
+    color: #000;
+    background-color: #eaeaea;
+  }
+  #menu>li{
+    font-size: 30;
+    font-family: "Homer Simpson UI";
+    float: center;
+    text-align:center
+  }
+  #menu>li>ul{
+    display: none;
+  }
+  #menu>li:hover>ul {
+    display:block;
+  }
+  .cabecera{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+  .cuadrado {
+    width: 15px;
+    height: 15px;
+    background: white;
+    margin-left: 1vw;
+    margin-right: 1vw;
+}
