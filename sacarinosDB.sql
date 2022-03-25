@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 -- phpMyAdmin SQL Dump
 -- version 5.0.4deb2
 -- https://www.phpmyadmin.net/
@@ -78,3 +79,34 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+=======
+
+CREATE SCHEMA `sacarinosDB` DEFAULT CHARACTER SET utf8 ;
+USE `sacarinosDB` ;
+
+CREATE TABLE `sacarinosDB`.`espana` (
+  `id` INT NOT NULL,
+  `tipoVehiculo` VARCHAR(45) NULL,
+  `cantidad` INT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+
+CREATE TABLE `sacarinosDB`.`vehiculos` (
+  `idcoches` INT NOT NULL,
+  `marca` VARCHAR(45) NULL,
+  `modelo` VARCHAR(45) NULL,
+  `matricula` VARCHAR(10) NULL,
+  `tipoVehiculo` INT NOT NULL,
+  PRIMARY KEY (`idcoches`),
+  INDEX `fk_vehiculos_espana_idx` (`tipoVehiculo` ASC),
+  CONSTRAINT `fk_vehiculos_espana`
+    FOREIGN KEY (`tipoVehiculo`)
+    REFERENCES `sacarinosDB`.`espana` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+>>>>>>> 94896ae4168559b12d02fee5b50a857d476f892d
