@@ -9,7 +9,4 @@ class FuncionesParaElTrabajito :
         return df
     print (gettingCSV())
     lista= gettingCSV
-    def insertingDataToTheDataBase(lista):
-        
-        pass
     
