@@ -12,7 +12,15 @@ class connectionbd :
             #Obtenemos un arraybidimnesional de las cosas del csv
             ##arrayConLasCositasXD = f.FuncionesParaElTrabajito.gettingCSV()
             ##f.FuncionesParaElTrabajito.extractDataFromArrayList(connection,arrayConLasCositasXD)
-            f.FuncionesParaElTrabajito.menu(connection)
+            menu_options = {
+                1:"WATCH ALL THE DATA FROM THE TABLE SPAIN" ,
+                2:"WATCH ALL THE DATA FROM THE TABLE  VEHICLES",
+                3:"INTRODUCE DATA TO VEHICLES",
+                4: "WIPE OUT DATA FROM VEHICLES WHERE ID",
+                5: "SEARCH DATA FROM VEHICLES WHERE ENROLLMENT(ID OF THE CAR)",
+                6: "EXIT",
+            }
+            f.FuncionesParaElTrabajito.menu(connection,menu_options)
 
  
         except pymysql.Error as e:

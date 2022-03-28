@@ -2,19 +2,50 @@ import pandas as pd
 import pymysql
 import Functions as f
 class FuncionesParaElTrabajito :
+    def searchCarIDS (connection):
+        try :
+            select1 = "SELECT  idcoches FROM sacarinosDB.espana"
+            #executing the quires
+            curr = connection.cursor()
+            curr.execute(select1)
+            rows = curr.fetchall()
+            for row in rows:
+                print(row)   
+            connection.commit()
+        except pymysql.Error as e : 
+            print("ERROR AL BUSCAR")
+            #commiting the connection then closing it.
+            connection.commit()
+        print("Busqueda correcta con la base de datos") 
+    def searchtipoVehiculo(connection) :
+        try :
+            select1 = "SELECT id,tipoVehiculo FROM sacarinosDB.espana"
+            #executing the quires
+            curr = connection.cursor()
+            curr.execute(select1)
+            rows = curr.fetchall()
+            for row in rows:
+                print(row)   
+            connection.commit()
+        except pymysql.Error as e : 
+            print("ERROR AL BUSCAR")
+            #commiting the connection then closing it.
+            connection.commit()
+        print("Busqueda correcta con la base de datos")
     def insertVehiclesToTheDatabse(connection,marca,modelo,matricula,tipoVehiculo) : 
-        marca = input("GIVE ME THE CAR BRAND")
-        modelo = input("GIVE ME THE CAR MODEL")
-         
         # queries for inserting values
         try :
-            insert1 = ("INSERT INTO sacarinosDB.vehiculos  (marca,modelo,matricula,tipoVehiculo)  VALUES ('%s','%s','%s','%s')" % (marca,modelo,matricula,tipoVehiculo))
+            print(marca)
+            print(modelo)
+            print(matricula)
+            print(tipoVehiculo)
+            insert1 = ("INSERT INTO sacarinosDB.vehiculos(marca,modelo,matricula,tipoVehiculo)  VALUES ('%s','%s','%s','%s')" % (marca,modelo,matricula,tipoVehiculo))
             #executing the quires
             curr = connection.cursor()
             curr.execute(insert1)
             connection.commit()
-
         except pymysql.Error as e : 
+            print(e)
             print("ERROR AL INSERTAR")
             #commiting the connection then closing it.
             connection.commit()
@@ -69,6 +100,37 @@ class FuncionesParaElTrabajito :
             #commiting the connection then closing it.
             connection.commit()
         print("Busqueda correcta con la base de datos")
+     #CONSULTA DE LA TABLA ESPAÑA : 
+    def searchingIDINTOTHEDATABASESPAIN(connection,idVehiculo) :
+        try :
+            select1 = "SELECT * FROM sacarinosDB.vehiculos where (matricula) = ('%s')" % (idVehiculo)
+            #executing the quires
+            curr = connection.cursor()
+            curr.execute(select1)
+            rows = curr.fetchall()
+            for row in rows:
+                print(row)   
+            connection.commit()
+        except pymysql.Error as e : 
+            print("ERROR AL BUSCAR")
+            #commiting the connection then closing it.
+            connection.commit()
+        print("Busqueda correcta con la base de datos")
+    def searchingTypesOfVehicles(connection,tipodeVehiculo) :
+        try :
+            select1 = "SELECT * FROM sacarinosDB.espana,sacarinosDB.vehiculos where tipoVehiculo = ('%s') " % (tipodeVehiculo)
+            #executing the quires
+            curr = connection.cursor()
+            curr.execute(select1)
+            rows = curr.fetchall()
+            for row in rows:
+                print(row)   
+            connection.commit()
+        except pymysql.Error as e : 
+            print("ERROR AL BUSCAR")
+            #commiting the connection then closing it.
+            connection.commit()
+        print("Busqueda correcta con la base de datos")  
     def searchingINTOTHEDATABASEVEHICLES(connection) :
         try :
             select1 = "SELECT * FROM sacarinosDB.vehiculos"
@@ -83,54 +145,43 @@ class FuncionesParaElTrabajito :
             print("ERROR AL BUSCAR")
             #commiting the connection then closing it.
             connection.commit()
-        print("Busqueda correcta con la base de datos")
-    
-    def menu(connection):
+        print("Busqueda correcta con la base de datos")  
+
+    def menu(connection,menu_options):
+      while(True):
         print("Welcome to T-SACARINOS CONSULTING")
-        menu_options = {
-            1:"WATCH ALL THE DATA FROM THE TABLE SPAIN" ,
-            2:"WATCH ALL THE DATA FROM THE TABLE  VEHICLES",
-            3:"INTRODUCE DATA TO SPAIN",
-            4:"INTRODUCE DATA TO VEHICLES",
-            5:"WIPE OUT DATA FROM SPAIN WHERE ID",
-            6: "WIPE OUT DATA FROM VEHICLES WHERE ID",
-            7: "SEARCH DATA FROM VEHICLES WHERE ENROLLMENT(ID OF THE CAR)",
-            8: "SEARCH DATA FROM SPAIN WHERE ENROLLMENT(ID OF THE CAR)",
-            9: "EXIT",
-        }
-        def print_menu():
-            for key in menu_options.keys():
-                print (key, '--', menu_options[key] )
-        if __name__=='__main__':
-            while(True):
-                print_menu()
-                option = ''
-                try:
-                    option = int(input('Enter your choice: '))
-                except:
-                    print('Wrong input. Please enter a number ...')
-                #Check what choice was entered and act accordingly
-                if option == 1:
-                    f.FuncionesParaElTrabajito.searchingINTOTHEDATABASESPAIN(connection)
-                elif option == 2:
-                    f.FuncionesParaElTrabajito.searchingINTOTHEDATABASEVEHICLES(connection)
-                elif option == 3:
-                    print("OPPS YOU CAN'T INSERT DATA AT THIS TABLE BECAUSE IS THE CATEGORY FROM DATGOB.ES")
-                    
-                elif option == 4:
-                    f.FuncionesParaElTrabajito.insertVehiclesToTheDatabse(cone)
-                elif option == 5:
-                    
-                elif option == 6:
-                
-                elif option == 7:
-                
-                elif option == 8:
-                
-                elif option == 9: 
-                    print('Thanks message before exiting')
-                    exit()
-                else:
-                    print('Invalid option. Please enter a number between 1 and 9.')
+        for key in menu_options.keys():
+            print (key, '--', menu_options[key] )
+        option = ''
+        try:
+            option = int(input('Enter your choice: '))
+        except:
+            print('Wrong input. Please enter a number ...')
+        #Check what choice was entered and act accordingly
+        if option == 1:
+            f.FuncionesParaElTrabajito.searchingINTOTHEDATABASESPAIN(connection)
+        elif option == 2:
+            f.FuncionesParaElTrabajito.searchingINTOTHEDATABASEVEHICLES(connection)
+        elif option == 3:
+            marca = input("GIVE ME THE CAR BRAND: ")
+            modelo = input("GIVE ME THE CAR MODEL: ")
+            matricula = input("GIVE ME THE ENROLLMENT(INTRODUCE THE ID): ")
+            print("----------------------------------------------")
+            FuncionesParaElTrabajito.searchtipoVehiculo(connection)
+            print("----------------------------------------------")
+            tipoVehiculo = input("INTRODUCE THE TYPE OF CAR : ")    
+            f.FuncionesParaElTrabajito.insertVehiclesToTheDatabse(connection,marca,modelo,matricula,tipoVehiculo)
+        elif option == 4:
+            FuncionesParaElTrabajito.searchCarIDS(connection)
+            idVehiculo = input("GIVE ME THE CAR ID: ")
+            FuncionesParaElTrabajito.deleteDataWhereIDinVehiculos(connection,idVehiculo)
+        elif option == 5:
+            matricula = input("GIVE ME THE CAR ID: ")
+            FuncionesParaElTrabajito.searchingIDINTOTHEDATABASESPAIN(connection,matricula)
+        elif option == 6:
+            print('Thanks message before exiting')
+            exit()
+        else:
+            print('Invalid option. Please enter a number between 1 and 9.')
     
       
