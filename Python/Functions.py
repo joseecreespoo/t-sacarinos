@@ -4,7 +4,8 @@ import Functions as f
 class FuncionesParaElTrabajito :
     def insertVehiclesToTheDatabse(connection,marca,modelo,matricula,tipoVehiculo) : 
         marca = input("GIVE ME THE CAR BRAND")
-        modelo = input("GIVE ME THE CAR MODEL") 
+        modelo = input("GIVE ME THE CAR MODEL")
+         
         # queries for inserting values
         try :
             insert1 = ("INSERT INTO sacarinosDB.vehiculos  (marca,modelo,matricula,tipoVehiculo)  VALUES ('%s','%s','%s','%s')" % (marca,modelo,matricula,tipoVehiculo))
@@ -132,19 +133,4 @@ class FuncionesParaElTrabajito :
                 else:
                     print('Invalid option. Please enter a number between 1 and 9.')
     
-        choises={
-           
-        }
-        for i in choises.keys(): # Loop to print all Choises and key of choise ! 
-            print(f"{i} - {choises[i]}")
-        arg=int(input("Pleasse Chose : "))
-        R=choises.get(arg,-1)
-        while R==-1:
-            print("\n Wrong Choise ! Try again ....\n")
-            menu()
-        else:
-            print(f"You Chosed {R}")
-            if R==1:
-                login()
-            if R==2:
-                register()   
+      
