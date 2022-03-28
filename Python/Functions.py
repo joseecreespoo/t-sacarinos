@@ -8,21 +8,10 @@ class FuncionesParaElTrabajito :
         ##Devolvemos el array bidimensional
         return df
     def  extractDataFromArrayList(dato) :
-        
-        s=""  
-        t=0
-        for fila1 in dato:
-            print (fila1)
-            if (isinstance(fila1, str)):
-                print("CADENA",type(fila1))
-                s+= " ' "+ fila1 + "'" + ","
-                dato = s
-            else:
-                print("INT",type(fila1))
-                t+= "'"+ fila1 + "'" + ","
-                dato = t
-        print (dato)  
-        return dato
+        for fila in dato :
+            print(fila)
+        return fila
+ 
        
             
     def insertCsvToTheDatabse(cursor,idCoche,tipoVehiculo,cantidad) : 

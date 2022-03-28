@@ -7,7 +7,6 @@ class connectionbd :
         arrayConLasCositasXD = f.FuncionesParaElTrabajito.gettingCSV()
         #Sacamos el id de Coche y los demas atributos a utilizar sin limpiar ya que obtenemos un dato DATAFRAME
         idCocheNoClean = arrayConLasCositasXD['_id'].to_list()
-        print(idCocheNoClean)
         tipoVehiculoNoClean = arrayConLasCositasXD['TIPO DE VEHÍCULO'].to_list()
         cantidadNoClean = arrayConLasCositasXD['CANTIDAD'].to_list()
         try:
