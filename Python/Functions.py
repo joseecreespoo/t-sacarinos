@@ -58,7 +58,7 @@ class FuncionesParaElTrabajito :
     #DEVUELVE TODOS LOS IDS QUE HAY EN LA TABLA
     def searchCarIDS (connection):
         try :
-            select1 = "SELECT  idcoches FROM sacarinosDB.espana"
+            select1 = "SELECT  matricula FROM sacarinosDB.espana"
             #executing the quires
             curr = connection.cursor()
             curr.execute(select1)
@@ -120,7 +120,7 @@ class FuncionesParaElTrabajito :
           
     #ELIMINA MATRICULA PASADA POR PARAMETRO:
     def deleteDataWhereIDinVehiculos(connection,matricula):    
-        sql = "DELETE FROM sacarinosDB.vehiculos WHERE('%s')" % (matricula)
+        sql = "DELETE FROM sacarinosDB.vehiculos WHERE(matricula) = ('%s')" % (matricula)
         curr = connection.cursor()
         curr.execute(sql)
         
@@ -223,8 +223,8 @@ class FuncionesParaElTrabajito :
             f.FuncionesParaElTrabajito.insertVehiclesToTheDatabse(connection,marca,modelo,matricula,tipoVehiculo)
         elif option == 4:
             FuncionesParaElTrabajito.searchCarIDS(connection)
-            idVehiculo = input("GIVE ME THE CAR ID: ")
-            FuncionesParaElTrabajito.deleteDataWhereIDinVehiculos(connection,idVehiculo)
+            matricula = input("GIVE ME THE CAR ID: ")
+            FuncionesParaElTrabajito.deleteDataWhereIDinVehiculos(connection,matricula)
         elif option == 5:
             matricula = input("GIVE ME THE CAR ID: ")
             FuncionesParaElTrabajito.searchingIDINTOTHEDATABASESPAIN(connection,matricula)
