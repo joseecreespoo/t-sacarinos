@@ -12,8 +12,7 @@ class connectionbd :
             #Obtenemos un arraybidimnesional de las cosas del csv
             ##arrayConLasCositasXD = f.FuncionesParaElTrabajito.gettingCSV()
             ##f.FuncionesParaElTrabajito.extractDataFromArrayList(connection,arrayConLasCositasXD)
-            f.FuncionesParaElTrabajito.searchingINTOTHEDATABASE(connection)
-            print("WELCOME TO T-SACARINOS DATABASE")
+            f.FuncionesParaElTrabajito.menu(connection)
 
  
         except pymysql.Error as e:

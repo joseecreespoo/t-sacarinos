@@ -2,6 +2,22 @@ import pandas as pd
 import pymysql
 import Functions as f
 class FuncionesParaElTrabajito :
+    def insertVehiclesToTheDatabse(connection,marca,modelo,matricula,tipoVehiculo) : 
+        marca = input("GIVE ME THE CAR BRAND")
+        modelo = input("GIVE ME THE CAR MODEL") 
+        # queries for inserting values
+        try :
+            insert1 = ("INSERT INTO sacarinosDB.vehiculos  (marca,modelo,matricula,tipoVehiculo)  VALUES ('%s','%s','%s','%s')" % (marca,modelo,matricula,tipoVehiculo))
+            #executing the quires
+            curr = connection.cursor()
+            curr.execute(insert1)
+            connection.commit()
+
+        except pymysql.Error as e : 
+            print("ERROR AL INSERTAR")
+            #commiting the connection then closing it.
+            connection.commit()
+        print("Introduccion correcta con la base de datos")  
     #FUNCION QUE INSERTA EL CSV EN LA DATABASE
     def insertCsvToTheDatabse(connection,idCoche,tipoVehiculo,cantidad) : 
         # queries for inserting values
@@ -37,7 +53,7 @@ class FuncionesParaElTrabajito :
         curr = connection.cursor()
         curr.execute(sql)
     #CONSULTA DE LA TABLA ESPAÑA : 
-    def searchingINTOTHEDATABASE(connection) :
+    def searchingINTOTHEDATABASESPAIN(connection) :
         try :
             select1 = "SELECT * FROM sacarinosDB.espana"
             #executing the quires
@@ -52,8 +68,23 @@ class FuncionesParaElTrabajito :
             #commiting the connection then closing it.
             connection.commit()
         print("Busqueda correcta con la base de datos")
+    def searchingINTOTHEDATABASEVEHICLES(connection) :
+        try :
+            select1 = "SELECT * FROM sacarinosDB.vehiculos"
+            #executing the quires
+            curr = connection.cursor()
+            curr.execute(select1)
+            rows = curr.fetchall()
+            for row in rows:
+                print(row)   
+            connection.commit()
+        except pymysql.Error as e : 
+            print("ERROR AL BUSCAR")
+            #commiting the connection then closing it.
+            connection.commit()
+        print("Busqueda correcta con la base de datos")
     
-    def menu():
+    def menu(connection):
         print("Welcome to T-SACARINOS CONSULTING")
         menu_options = {
             1:"WATCH ALL THE DATA FROM THE TABLE SPAIN" ,
@@ -63,7 +94,8 @@ class FuncionesParaElTrabajito :
             5:"WIPE OUT DATA FROM SPAIN WHERE ID",
             6: "WIPE OUT DATA FROM VEHICLES WHERE ID",
             7: "SEARCH DATA FROM VEHICLES WHERE ENROLLMENT(ID OF THE CAR)",
-            8: "SEARCH DATA FROM SPAIN WHERE ENROLLMENT(ID OF THE CAR)"
+            8: "SEARCH DATA FROM SPAIN WHERE ENROLLMENT(ID OF THE CAR)",
+            9: "EXIT",
         }
         def print_menu():
             for key in menu_options.keys():
@@ -78,16 +110,27 @@ class FuncionesParaElTrabajito :
                     print('Wrong input. Please enter a number ...')
                 #Check what choice was entered and act accordingly
                 if option == 1:
-                    
+                    f.FuncionesParaElTrabajito.searchingINTOTHEDATABASESPAIN(connection)
                 elif option == 2:
-                    option2()
+                    f.FuncionesParaElTrabajito.searchingINTOTHEDATABASEVEHICLES(connection)
                 elif option == 3:
-                    option3()
+                    print("OPPS YOU CAN'T INSERT DATA AT THIS TABLE BECAUSE IS THE CATEGORY FROM DATGOB.ES")
+                    
                 elif option == 4:
+                    f.FuncionesParaElTrabajito.insertVehiclesToTheDatabse(cone)
+                elif option == 5:
+                    
+                elif option == 6:
+                
+                elif option == 7:
+                
+                elif option == 8:
+                
+                elif option == 9: 
                     print('Thanks message before exiting')
                     exit()
                 else:
-                    print('Invalid option. Please enter a number between 1 and 4.')
+                    print('Invalid option. Please enter a number between 1 and 9.')
     
         choises={
            
