@@ -1,0 +1,4 @@
+1- Al entrar a trabajar, todo el mundo debe pasar por el puesto del Junior Senior y saludarlo a la voz de "hola papa Jairo"
+2- Todos los commit deben iniciarse con el mensaje "nombre + cambios realizados"
+3- Los cambios hay que realizarlos antes de la hora de comida para asi poder resolver los conflictos despues
+4- Cuando se presenten conflictos, el encargado de resolverlos sera Jose Crespo como administrador de la cuenta de Git 

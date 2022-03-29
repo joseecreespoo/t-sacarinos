@@ -6,7 +6,7 @@ class connectionbd :
         try:
             #database connection
             #Conectamos la base de datos a mi servidor local xamp
-            connection = pymysql.connect(host="localhost", user="root", passwd="", database="sacarinosDB")
+            connection = pymysql.connect(host="localhost", user="josecrespo", passwd="josecrespo", database="sacarinosDB")
             cursor = connection.cursor()
             ##ESTO SE HACE SOLO 1 VEZ QUE ES PARA METER EL CSV EN LA TABLA ESPAÑA
             #Obtenemos un arraybidimnesional de las cosas del csv
